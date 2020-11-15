@@ -11,8 +11,13 @@
     <hr class="my-4">
     <p class="lead">
         <a class="btn btn-lg" href="#" role="button" style="background-color: #6aaa5c; color: white"><i
-                    class="fa fa-plus-square"> | Ajouter un contact</i></a>
+                    class="fa fa-plus-square" id="add_Contact"> | Ajouter un contact</i></a>
     </p>
+
+
+
+
+
 
     <table id="example" class="table table-striped table-bordered" style="width:100%">
         <thead>
@@ -27,67 +32,45 @@
             <th style="color: white; width: 80px;" ><i class="fa fa-bars"></i></th>
         </tr>
         </thead>
+        @foreach($contacts as $contact )
+            <tr id="contact{{$contact -> id}}">
+                @if ( $contact -> civilite == "male" ) <td style="color: blue"><i class="fa fa-male"></i></td>
+            @else <td style="color: deeppink"><i class="fa fa-female"></i></td>
+                @endif
+                <td>{{$contact -> prenom}}</td>
+                <td>{{$contact -> nom}}</td>
+                <td>{{$contact -> tel}}</td>
+                <td>{{$contact -> email}}</td>
+                <td>{{$contact -> nom_societe}}</td>
+                <td>{{$contact -> ville}}</td>
+                <td>
+                    <a href="/contacts/detailsContact/{{$contact -> id}}" class="icon-block">
+                        <i class="fas fa-pencil-alt"></i>
+
+                    </a>
+                    <a  onclick="deleteContact({{$contact -> id}});return false;" class="icon-block">
+                        <i  class="far fa-trash-alt deleteContact"></i>
+
+                    </a>
+                    <a href="/contacts/detailsContact/{{$contact -> id}}" class="icon-block">
+                        <i class="far fa-eye"></i>
+
+                    </a>
+                    <a href="" class="icon-block">
+                        <i class="fas fa-street-view"></i>
+
+                    </a>
+                </td>
+            </tr>
+        @endforeach
         <tbody>
-        <tr>
-            <td style="color: blue"><i class="fa fa-male"></i></td>
-            <td>ahmd</td>
-            <td>fatihi</td>
-            <td>0606060606</td>
-            <td>ahmd-assni@gmail.com</td>
-            <td>google</td>
-            <td>Taliwin</td>
-            <td>
-                <a href="#" class="icon-block">
-                    <i class="fas fa-pencil-alt"></i>
 
-                </a>
-                <a href="#" class="icon-block">
-                    <i class="far fa-trash-alt"></i>
-
-                </a>
-                <a href="#" class="icon-block">
-                    <i class="far fa-eye"></i>
-
-                </a>
-                <a href="#" class="icon-block">
-                    <i class="fas fa-street-view"></i>
-
-                </a>
-            </td>
-        </tr>
-        <tr>
-            <td style="color: deeppink"><i class="fa fa-female"></i></td>
-            <td>fanna</td>
-            <td>Ali</td>
-            <td>0606110305</td>
-            <td>Fanna-ali@gmail.com</td>
-            <td>arwass</td>
-            <td>kech</td>
-            <td>
-                <a href="#" class="icon-block">
-                    <i class="fas fa-pencil-alt"></i>
-
-                </a>
-                <a href="#" class="icon-block">
-                    <i class="far fa-trash-alt"></i>
-
-                </a>
-                <a href="#" class="icon-block">
-                    <i class="far fa-eye"></i>
-
-                </a>
-                <a href="#" class="icon-block">
-                    <i class="fas fa-street-view"></i>
-                </a>
-            </td>
-        </tr>
 
         </tbody>
     </table>
 
 </div>
 @endsection
-
 
 @section('jsIncludes')
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -110,6 +93,27 @@
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
     <script src="/js/listeDesContactsDataTableConfig.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-@endsection
+    <script>
+        function deleteContact(id)
+        {
+            $.ajax({
+                type: 'get',
+                url: '/contacts/delete/'+ id,
+                data: {
+                    '_token': $('input[name=_token]').val(),
+                },
+                success: function() {
+                    document.getElementById("contact"+id).remove();
+                    window.alert('Contact supprime')
 
+                }
+            });
+            console.log(id);
+        }
+
+
+    </script>
+
+
+@endsection
 

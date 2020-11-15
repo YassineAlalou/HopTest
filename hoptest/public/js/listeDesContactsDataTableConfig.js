@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
     $('#example').DataTable(
         {
@@ -16,10 +15,8 @@ $(document).ready(function () {
                 "search": "Rechercher  ",
                 "paginate": {
                     "next": "Suivant",
-
                 },
             },
-
 
         }
     );
