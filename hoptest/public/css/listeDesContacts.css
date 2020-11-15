@@ -1,0 +1,16 @@
+thead {
+    background-color: #1f488e;
+}
+
+.previous {
+    display: none;
+}
+
+#example_filter > label > input {
+    width: 100%;
+    background-color: #e0ecf3;
+}
+
+.dataTables_filter {
+    text-align: left !important;
+}

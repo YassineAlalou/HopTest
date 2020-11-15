@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/contacts/listeDesConatcs', 'contactController@get_ListeDesContacts');
+
+Route::get('/contacts/detailsContact/{id}', 'contactController@show_DetailsContact');
