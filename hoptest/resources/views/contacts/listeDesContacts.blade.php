@@ -105,13 +105,10 @@
                 success: function() {
                     document.getElementById("contact"+id).remove();
                     window.alert('Contact supprime')
-
                 }
             });
             console.log(id);
         }
-
-
     </script>
 
 

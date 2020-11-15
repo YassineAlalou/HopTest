@@ -202,9 +202,6 @@
             let new_value = "";
             new_value += text.toLowerCase();
     element.val(new_value.charAt(0).toUpperCase()+ new_value.slice(1));
-
-
-
         });
     } );
 </script>
