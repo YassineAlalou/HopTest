@@ -4,7 +4,8 @@
 @endsection
 
 <div class="jumbotron" style="background-color: white">
-    <label class="display" style="color: #8c8c8c; font-size: 35px;">{{$contact -> nom}}  {{$contact -> prenom}}  </label> Contact
+    <label class="display"
+           style="color: #8c8c8c; font-size: 35px;">{{$contact -> nom}}  {{$contact -> prenom}}  </label> Contact
     <hr class="my-4">
 
     <form action="/contacts/edit/{{$contact->id}}" method="POST">
@@ -35,7 +36,8 @@
 
                             <div class="form-group col-md-6">
                                 <label for="inputEmail4">Prénom</label>
-                                <input type="text" class="form-control affichage" id="1" name="prenom" placeholder="Prenom"
+                                <input type="text" class="form-control affichage" id="1" name="prenom"
+                                       placeholder="Prenom"
                                        value="{{$contact -> prenom}}" required>
                             </div>
                             <div class="form-group col-md-6">
@@ -51,7 +53,7 @@
                             <div class="form-group col-md-6">
                                 <label for="inputEmail4">Fonction</label>
                                 <input type="text" class="form-control" id="fonction" name="fonction"
-                                       placeholder="Fonction" value="{{$contact -> fonction}}" >
+                                       placeholder="Fonction" value="{{$contact -> fonction}}">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="inputPassword4">Service</label>
@@ -189,20 +191,20 @@
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
-    $( function() {
-        $( "#datedenaissance" ).datepicker();
-    } );
+    $(function () {
+        $("#datedenaissance").datepicker();
+    });
 </script>
 
 <script>
-    $( function() {
-        $( ".affichage" ).each( function (e) {
+    $(function () {
+        $(".affichage").each(function (e) {
             var element = $(this);
             let text = element.val();
             let new_value = "";
             new_value += text.toLowerCase();
-    element.val(new_value.charAt(0).toUpperCase()+ new_value.slice(1));
+            element.val(new_value.charAt(0).toUpperCase() + new_value.slice(1));
         });
-    } );
+    });
 </script>
 
